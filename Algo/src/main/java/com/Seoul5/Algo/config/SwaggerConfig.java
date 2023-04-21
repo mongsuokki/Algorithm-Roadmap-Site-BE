@@ -20,7 +20,7 @@ public class SwaggerConfig {
 //	public Docket api() {
 //		final ApiInfo apiInfo = new ApiInfoBuilder().title("")
 //				.description("")
-//				.contact(new Contact("SSAFY", "https://edu.ssafy.com", "ssafy@ssafy.com")).license("MIT License")
+//				.contact(new Contact("")).license("MIT License")
 //				.version("1.0").build();
 //		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo).select()
 //				.apis(RequestHandlerSelectors.basePackage("com.Seoul5.Algo.controller"))
