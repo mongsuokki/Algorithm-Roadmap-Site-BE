@@ -6,7 +6,13 @@ import com.Seoul5.Algo.model.dto.User;
 
 public interface UserDao {
 
+	int insert(User user);
+	
+	User selectById(String id);
+	
 	List<User> selectAll();
 	
-	int insert(User user);
+	List<User> searchById(String id);
+	
+	int update(User user);
 }

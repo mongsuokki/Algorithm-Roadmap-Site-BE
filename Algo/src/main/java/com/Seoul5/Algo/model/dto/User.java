@@ -8,6 +8,10 @@ public class User {
 	private String email;
 	private String img;
 	private int solvedCnt;
+	private DailyQuestion DQ;
+	// 오늘의 추천문제 관련 설정항목 이렇게 객체로 넣는게 나을지 아니면 따로 항목 일일이 넣는게 나을지?
+	// 객체로 넣는다면 Mapper에 어떻게 넣을 수 있는지 알아보기
+	
 	public String getId() {
 		return id;
 	}

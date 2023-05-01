@@ -10,6 +10,20 @@
 	
 	<insert id="insert" parameterType="User">
 		INSERT INTO User
-		VALUES(#{id}, #{name}, #{password}, #{BOJid}, #{email}, #{img}, #{solvedSum})
+		VALUES(#{id}, #{name}, #{password}, #{BOJid}, #{email}, #{img}, #{solvedCnt})
 	</insert>
+	
+	<select id="seletById" resultType="User" parameterType="String">
+	 SELECT * FROM User WHERE id = #{id}
+	</select>
+	
+	<select id="searchById" resultType="User" parameterType="String">
+	SELECT * FROM User WHERE id LIKE concat('%',#{id},'%');
+	</select>
+	
+	<update id="update" parameterType="User">
+	
+	</update>
+	
+	
 </mapper>
