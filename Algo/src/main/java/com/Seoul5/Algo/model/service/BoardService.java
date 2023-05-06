@@ -1,11 +1,11 @@
-package com.Seoul5.Algo.model.dao;
+package com.Seoul5.Algo.model.service;
 
 import java.util.List;
 
 import com.Seoul5.Algo.model.dto.Board;
 import com.Seoul5.Algo.model.dto.SearchCondition;
 
-public interface BoardDao {
+public interface BoardService {
 	
 	int insertBoard(Board board);
 
