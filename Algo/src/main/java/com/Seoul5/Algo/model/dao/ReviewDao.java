@@ -13,6 +13,6 @@ public interface ReviewDao {
 	Review selectReview(int reviewId);
 
 	int deleteReview(int reviewId);
-
+ 
 	List<Review> selectReviewByProblem(int pNum);
 }
