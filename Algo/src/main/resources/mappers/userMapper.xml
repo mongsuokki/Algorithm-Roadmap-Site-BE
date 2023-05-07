@@ -9,21 +9,28 @@
 	</select>
 	
 	<insert id="insert" parameterType="User">
-		INSERT INTO User
-		VALUES(#{id}, #{name}, #{password}, #{BOJid}, #{email}, #{img}, #{solvedCnt})
+		INSERT INTO User(id,name,password,BOJid,email,img,difficulty,algo,again,solvedCntm,week)
+		VALUES(#{id}, #{name}, #{password}, #{BOJid}, #{email}, #{img}, #{difficulty}, #{algo}, #{again}, #{solvedCnt},#{week})
 	</insert>
 	
 	<select id="seletById" resultType="User" parameterType="String">
-	 SELECT * FROM User WHERE id = #{id}
+		 SELECT * FROM User WHERE id = #{id}
 	</select>
 	
 	<select id="searchById" resultType="User" parameterType="String">
-	SELECT * FROM User WHERE id LIKE concat('%',#{id},'%');
+		SELECT * FROM User WHERE id LIKE concat('%',#{id},'%');
 	</select>
 	
 	<update id="update" parameterType="User">
-	
+		UPDATE User
+		SET name = #{name}, password = #{password}, BOJid = #{BOJid}, email = #{email}, img = #{img}, orgImg = #{orgImg}, difficulty=#{difficulty}, algo=#{algo}, again=#{again},week=#{week} 
+		WHERE id = #{id}
 	</update>
 	
+	<update id="weeklyUpadate" parameterType="User">
+	UPDATE User
+	SET solvedCnt = #{solvedCnt}
+	WHERE id=#{id}
+	</update>
 	
 </mapper>

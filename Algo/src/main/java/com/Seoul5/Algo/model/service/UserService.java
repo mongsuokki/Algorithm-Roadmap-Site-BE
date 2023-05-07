@@ -15,4 +15,6 @@ public interface UserService {
 	List<User> searchById(String id);
 	
 	int update(User user);
+	
+	int weeklyUpdate(User user);
 }

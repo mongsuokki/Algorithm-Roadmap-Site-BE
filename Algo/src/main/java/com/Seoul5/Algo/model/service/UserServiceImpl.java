@@ -50,7 +50,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public int update(User user) {
 		return userDao.update(user);
 	}
+
+	@Override
+	@Transactional
+	public int weeklyUpdate(User user) {
+		return userDao.weeklyUpdate(user);
+	}
+	
 }
