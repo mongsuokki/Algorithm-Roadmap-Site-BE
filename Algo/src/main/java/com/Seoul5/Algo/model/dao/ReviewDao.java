@@ -11,7 +11,7 @@ public interface ReviewDao {
 	int updateReview(Review review);
 
 	Review selectReview(int reviewId);
-
+ 
 	int deleteReview(int reviewId);
  
 	List<Review> selectReviewByProblem(int pNum);
