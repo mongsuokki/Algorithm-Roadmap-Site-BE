@@ -1,8 +1,14 @@
 package com.Seoul5.Algo.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
@@ -27,6 +33,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.Seoul5.Algo.model.dto.User;
 import com.Seoul5.Algo.model.service.UserService;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -34,15 +43,16 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/userapi")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
 public class UserRestController {
-
-	// 더 추가해야할 것
-	// 백준Api와 연동해서 주단위로 solvedCnt 업데이트
 	
 	@Autowired
 	UserService us;
 	
 	@Autowired
 	ResourceLoader resLoader;
+	
+	BufferedReader rd;
+	StringBuilder sb;
+	
 	
 	@GetMapping("/list")
 	@ApiOperation(value = "등록된 모든 사용자 정보를 반환한다.", response = User.class)
@@ -115,6 +125,42 @@ public class UserRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	
-	
+	//1주일마다 업데이트를 합니당
+	private void weeklyupdate() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				List<User> users = us.selectAll();
+				for(int i=0;i<users.size();i++) {
+					User user = users.get(i);
+			        try {
+			            URL url = new URL("https://solved.ac/api/v3/user/show?handle="+user.getBOJid());
+			            String line;
+			            sb = new StringBuilder();
+			            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			            conn.setRequestMethod("GET");
+			            conn.setRequestProperty("Content-type", "application/json; charset=UTF-8");
+			            if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+			                rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+			            } else {
+			                rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "UTF-8"));
+			            }
+			            while ((line = rd.readLine()) != null) {
+			                sb.append(line);
+			            }
+			            rd.close();
+			            conn.disconnect();
+			            String text = sb.toString();
+			            JsonElement element = JsonParser.parseString(text);
+			            JsonObject object = element.getAsJsonObject();
+			            user.setSolvedCnt(object.get("solvedCount").getAsInt());
+			        } catch(Exception e) {
+			            e.printStackTrace();
+			        }
+				}
+			}
+		};
+		timer.scheduleAtFixedRate(task, 0, 1000*60*60*24*7);
+	}
 }
