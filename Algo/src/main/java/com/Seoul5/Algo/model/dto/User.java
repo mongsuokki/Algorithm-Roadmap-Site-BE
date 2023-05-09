@@ -12,9 +12,8 @@ public class User {
 	private String orgImg;
 	private int difficulty;
 	// 1 브론즈까지 2 실버까지 3 골드...까지 
-	// 따로 Problem 에 난이도 추가할 필요 없이 백준 API로 검색한다음 매칭시키면 되지 않을까?
-	private List<String> algo;
-	// 추천문제에 어떤 알고리즘들을 넣을지
+//	private List<String> algo;
+	// 추천문제에 어떤 알고리즘들을 넣을지 -> 이거 리스트라서 sql 문제 생겨서 잠시 보류
 	private boolean again;
 	// 추천문제에 풀었던 문제도 나올지
 	private int solvedCnt;
@@ -70,12 +69,12 @@ public class User {
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
-	public List<String> getAlgo() {
-		return algo;
-	}
-	public void setAlgo(List<String> algo) {
-		algo = algo;
-	}
+//	public List<String> getAlgo() {
+//		return algo;
+//	}
+//	public void setAlgo(List<String> algo) {
+//		algo = algo;
+//	}
 	public boolean isAgain() {
 		return again;
 	}
