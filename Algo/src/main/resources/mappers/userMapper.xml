@@ -5,9 +5,9 @@
 
 	<insert id="insert" parameterType="User">
 		INSERT INTO
-		User(id,name,password,BOJid,email,img,difficulty,again,solvedCnt,week)
+		User(id,name,password,BOJid,email,img,difficulty,algo,again,solvedCnt,week)
 		VALUES(#{id}, #{name}, #{password}, #{BOJid}, #{email}, #{img},
-		#{difficulty}, #{again}, #{solvedCnt},#{week})
+		#{difficulty},#{algo}, #{again}, #{solvedCnt},#{week})
 	</insert>
 
 	<select id="selectById" resultType="User" parameterType="String">
@@ -27,7 +27,7 @@
 		UPDATE User
 		SET name = #{name},
 		password = #{password}, BOJid = #{BOJid}, email = #{email}, img =
-		#{img}, orgImg = #{orgImg}, difficulty=#{difficulty},
+		#{img}, orgImg = #{orgImg}, difficulty=#{difficulty},algo=#{algo},
 		again=#{again},week=#{week}
 		WHERE id = #{id}
 	</update>
