@@ -6,6 +6,11 @@ public class Problem {
 	private int pNum;
 	private List<String> algo;
 
+	public Problem(int pNum, List<String> algo) {
+		this.pNum = pNum;
+		this.algo = algo;
+	}
+
 	public int getpNum() {
 		return pNum;
 	}

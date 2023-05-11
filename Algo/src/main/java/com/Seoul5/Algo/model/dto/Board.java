@@ -1,15 +1,9 @@
 package com.Seoul5.Algo.model.dto;
 
-public class Review {
+public class Board {
 	private int pNum;
-	private String userId;
+	private String id;
 	private String content;
-
-	public Review(int pNum, String userId, String content) {
-		this.pNum = pNum;
-		this.userId = userId;
-		this.content = content;
-	}
 
 	public int getpNum() {
 		return pNum;
@@ -19,12 +13,12 @@ public class Review {
 		this.pNum = pNum;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getId() {
+		return id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getContent() {

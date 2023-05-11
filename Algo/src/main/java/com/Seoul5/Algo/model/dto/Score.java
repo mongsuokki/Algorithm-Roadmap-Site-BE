@@ -5,6 +5,12 @@ public class Score {
 	private String userId;
 	private int score;
 
+	public Score(int pNum, String userId, int score) {
+		this.pNum = pNum;
+		this.userId = userId;
+		this.score = score;
+	}
+
 	public int getpNum() {
 		return pNum;
 	}
