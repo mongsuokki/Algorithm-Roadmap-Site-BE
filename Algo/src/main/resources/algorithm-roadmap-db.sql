@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `img` VARCHAR(200) NULL,
   `orgImg` VARCHAR(200) NULL,
   `difficulty` INT NOT NULL,
+  `algo` VARCHAR(45) NOT NULL,
   `again` BOOL NOT NULL,
   `solvedCnt` INT NULL,
   `week` INT NULL,
@@ -80,6 +81,6 @@ CREATE TABLE IF NOT EXISTS `Review` (
 ENGINE = InnoDB;
 
 INSERT INTO User
-VALUES("test123", "tester", "test321!!", "testBOJ", "test@naver.com", NULL,NULL,3,true,3,2);
+VALUES("test123", "tester", "test321!!", "testBOJ", "test@naver.com", NULL,NULL,3,"DFS",true,3,2);
 
 select * from user;
